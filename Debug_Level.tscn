@@ -1,0 +1,122 @@
+[gd_scene load_steps=13 format=3 uid="uid://bd5msej2md0wf"]
+
+[ext_resource type="PackedScene" uid="uid://c1nm8hajfwlg6" path="res://Biomes/Forrest/Pillar_Tall.001.blend" id="2_fusv1"]
+[ext_resource type="PackedScene" uid="uid://da7ul452tdiv5" path="res://Biomes/Forrest/Pillar_Short.001.blend" id="3_efs41"]
+[ext_resource type="PackedScene" uid="uid://b2q8lv75dikmq" path="res://Biomes/Forrest/Platform_Flat.001.blend" id="4_ek2uq"]
+[ext_resource type="PackedScene" uid="uid://das43kxomu0bf" path="res://Biomes/Forrest/Platform_Flat.002.blend" id="5_605v0"]
+[ext_resource type="PackedScene" uid="uid://bvhp2fq468xdj" path="res://Biomes/Forrest/Wall_Panel.001.blend" id="6_0ctf1"]
+[ext_resource type="PackedScene" uid="uid://drd68js2ge6fe" path="res://Biomes/Forrest/Rock_Large.001.blend" id="7_beo4t"]
+[ext_resource type="Script" uid="uid://d1t2l04yfex8w" path="res://sidescroller_camera.gd" id="8_fusv1"]
+[ext_resource type="PackedScene" uid="uid://3r6j7a4ouln4" path="res://Biomes/Forrest/Rock_Large.002.blend" id="8_hu0ng"]
+[ext_resource type="PackedScene" uid="uid://btxud1srvgp6i" path="res://Character/Player/player.tscn" id="9_efs41"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qbbn3"]
+
+[sub_resource type="Sky" id="Sky_r1hhx"]
+sky_material = SubResource("ProceduralSkyMaterial_qbbn3")
+
+[sub_resource type="Environment" id="Environment_fusv1"]
+background_mode = 2
+sky = SubResource("Sky_r1hhx")
+
+[node name="Level" type="Node3D"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_fusv1")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Scenery" type="Node3D" parent="."]
+
+[node name="Pillar_Tall_001" parent="Scenery" instance=ExtResource("2_fusv1")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 6.00354, -7.56629, 14.2493)
+
+[node name="Pillar_Tall_002" parent="Scenery" instance=ExtResource("2_fusv1")]
+transform = Transform3D(-3.0575e-08, -0.27062, -0.699475, -1.18292e-08, 0.699475, -0.27062, 0.75, 0, -3.27835e-08, -4.08055, -8.31834, 12.7793)
+
+[node name="Pillar_Short_001" parent="Scenery" instance=ExtResource("3_efs41")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.947864, -7.43474, 16.9003)
+
+[node name="Pillar_Short_002" parent="Scenery" instance=ExtResource("3_efs41")]
+transform = Transform3D(4.37114e-08, 8.9407e-08, -1, 2.66454e-15, -1, -8.9407e-08, -1, 0, -4.37114e-08, -9.28443, 7.86757, 12.4435)
+
+[node name="Pillar_Tall_003" parent="Scenery" instance=ExtResource("2_fusv1")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -16.0936, -7.56629, 14.2493)
+
+[node name="Pillar_Tall_004" parent="Scenery" instance=ExtResource("2_fusv1")]
+transform = Transform3D(-3.0575e-08, -0.27062, -0.699475, -1.18292e-08, 0.699475, -0.27062, 0.75, 0, -3.27835e-08, -26.1777, -8.31834, 12.7296)
+
+[node name="Pillar_Tall_005" parent="Scenery" instance=ExtResource("2_fusv1")]
+transform = Transform3D(-2.09357e-08, 0.163735, -0.731909, 4.35947e-08, 0.731909, 0.163735, 0.75, -3.79726e-08, -2.9948e-08, -46.3548, -5.51713, 9.78916)
+
+[node name="Pillar_Short_003" parent="Scenery" instance=ExtResource("3_efs41")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -39.1457, -11.7, 16.9003)
+
+[node name="Pillar_Short_004" parent="Scenery" instance=ExtResource("3_efs41")]
+transform = Transform3D(4.37114e-08, 8.9407e-08, -1, 2.66454e-15, -1, -8.9407e-08, -1, 0, -4.37114e-08, -31.3816, 7.86757, 12.4435)
+
+[node name="Pillar_Short_005" parent="Scenery" instance=ExtResource("3_efs41")]
+transform = Transform3D(-0.20698, -0.285404, 0.935791, 0.0616366, -0.958407, -0.278669, 0.976402, 5.64226e-09, 0.215963, -25.4757, 9.16264, 14.1627)
+
+[node name="Platforms" type="Node3D" parent="."]
+
+[node name="Platform_Flat_001" parent="Platforms" instance=ExtResource("4_ek2uq")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.873377, -2, -0.0358882)
+
+[node name="Platform_Flat_007" parent="Platforms" instance=ExtResource("4_ek2uq")]
+transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, -2.72869, -3.11911, 6.72804)
+
+[node name="Platform_Flat_008" parent="Platforms" instance=ExtResource("4_ek2uq")]
+transform = Transform3D(-1.13028e-07, -1.41421, 1.41421, 6.18172e-08, 1.41421, 1.41421, -2, 1.23634e-07, -3.62117e-08, 9.39732, 2.53115, 2.57306)
+
+[node name="Platform_Flat_003" parent="Platforms" instance=ExtResource("4_ek2uq")]
+transform = Transform3D(-4.34291e-08, 0.113463, 0.993542, 4.95964e-09, 0.993542, -0.113463, -1, 0, -4.37114e-08, -14.8767, -2, -0.0358882)
+
+[node name="Platform_Flat_004" parent="Platforms" instance=ExtResource("4_ek2uq")]
+transform = Transform3D(-4.34291e-08, 0.113463, 0.993542, 4.95964e-09, 0.993542, -0.113463, -1, 0, -4.37114e-08, -22.8202, -1.22908, -0.0358882)
+
+[node name="Platform_Flat_006" parent="Platforms" instance=ExtResource("4_ek2uq")]
+transform = Transform3D(-4.37021e-08, -0.0206283, 0.999787, -9.01692e-10, 0.999787, 0.0206283, -1, 0, -4.37114e-08, -38.5837, -1.40017, -0.0358882)
+
+[node name="Platform_Flat_002" parent="Platforms" instance=ExtResource("5_605v0")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6.95023, -2.5324, 1.19209e-07)
+
+[node name="Platform_Flat_005" parent="Platforms" instance=ExtResource("5_605v0")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -30.9616, -2.5324, 1.19209e-07)
+
+[node name="Background" type="Node3D" parent="."]
+
+[node name="Wall_Panel_001" parent="Background" instance=ExtResource("6_0ctf1")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0.127879, -1.19209e-07, 40.2622)
+
+[node name="Wall_Panel_005" parent="Background" instance=ExtResource("6_0ctf1")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 46.4974, -1.19209e-07, 40.2621)
+
+[node name="Wall_Panel_003" parent="Background" instance=ExtResource("6_0ctf1")]
+transform = Transform3D(10, 6.18172e-07, -2.56055e-07, -6.18172e-07, 7.07107, -7.07107, -2.56055e-07, 7.07107, 7.07107, 0.127877, -11.6168, 22.7743)
+
+[node name="Wall_Panel_006" parent="Background" instance=ExtResource("6_0ctf1")]
+transform = Transform3D(10, 6.18172e-07, -2.56055e-07, -6.18172e-07, 7.07107, -7.07107, -2.56055e-07, 7.07107, 7.07107, 47.1388, -11.6168, 23.3338)
+
+[node name="Wall_Panel_002" parent="Background" instance=ExtResource("6_0ctf1")]
+transform = Transform3D(-4.37114e-07, -10, 0, 10, -4.37114e-07, 0, 0, 0, 10, -26.1948, 19.8426, 40.1284)
+
+[node name="Wall_Panel_004" parent="Background" instance=ExtResource("6_0ctf1")]
+transform = Transform3D(0.854049, -9.84923, -1.50444, 4.8624, 1.72995, -8.5653, 8.69641, 4.93221e-08, 4.93684, -24.3793, 1.24428, 40.1284)
+
+[node name="Rock_Large_001" parent="Background" instance=ExtResource("7_beo4t")]
+transform = Transform3D(25, 1.23507e-06, -1.63931e-06, -1.81215e-06, 3.90612, -24.693, -9.63762e-07, 24.693, 3.90612, -20.3238, -12.2964, 28.3214)
+
+[node name="Rock_Large_002" parent="Background" instance=ExtResource("8_hu0ng")]
+transform = Transform3D(-0.0792367, 0, -19.9998, 0, 44.3168, 0, 19.9998, 0, -0.0792367, -22.8622, 3.82313, 44.1175)
+
+[node name="SideScrollerCamera" type="Camera3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.56446e-06, 0, -17.8953)
+fov = 22.0
+script = ExtResource("8_fusv1")
+
+[node name="Player" parent="." instance=ExtResource("9_efs41")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 3.27513, -1.88705, -0.306194)
