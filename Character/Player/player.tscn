@@ -1,9 +1,29 @@
-[gd_scene load_steps=4 format=3 uid="uid://btxud1srvgp6i"]
+[gd_scene load_steps=10 format=3 uid="uid://btxud1srvgp6i"]
 
 [ext_resource type="Script" uid="uid://brxu4fn4oe7ua" path="res://Character/Player/player.gd" id="1_vnk41"]
 [ext_resource type="PackedScene" uid="uid://bsvie8k2iibgc" path="res://Character/Player/Char_One1.blend" id="2_vnk41"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2h1g1"]
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_vnk41"]
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_2h1g1"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7t67c"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1spju"]
+advance_condition = &"Velociyt > 0"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ta2qq"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_o1rx4"]
+states/Idle/node = SubResource("AnimationNodeBlendSpace2D_vnk41")
+states/Idle/position = Vector2(347, 105)
+states/Run/node = SubResource("AnimationNodeBlendSpace2D_2h1g1")
+states/Run/position = Vector2(359, 38)
+transitions = ["Run", "Idle", SubResource("AnimationNodeStateMachineTransition_7t67c"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_1spju"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_ta2qq")]
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_vnk41")
@@ -13,32 +33,6 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 
 
 [node name="Char_One1" parent="RotationHandle" instance=ExtResource("2_vnk41")]
 
-[node name="Skeleton3D" parent="RotationHandle/Char_One1/Armature" index="0"]
-bones/0/position = Vector3(-0.00752384, 0.609706, 0.0387483)
-bones/0/rotation = Quaternion(0.0142046, 0.987511, -0.15676, 0.00679108)
-bones/1/rotation = Quaternion(-0.116556, 0.115248, -0.0219527, 0.986231)
-bones/2/rotation = Quaternion(0.0837457, -0.00782538, -0.000898012, 0.996456)
-bones/3/rotation = Quaternion(-0.0293552, 7.54675e-09, 1.64864e-09, 0.999569)
-bones/4/rotation = Quaternion(0.0205146, -0.0686604, -0.824997, 0.560576)
-bones/5/rotation = Quaternion(-0.210375, 0.180607, -0.255435, 0.926216)
-bones/6/rotation = Quaternion(0.637658, -0.0308157, -0.0844911, 0.765052)
-bones/7/rotation = Quaternion(-0.0803501, -0.0590614, -0.00616101, 0.994996)
-bones/8/rotation = Quaternion(-0.0988268, 0.0696216, 0.852164, 0.509119)
-bones/9/rotation = Quaternion(-0.000780834, 0.452307, 0.281732, 0.846194)
-bones/10/rotation = Quaternion(0.283161, 0.10626, 0.503649, 0.809238)
-bones/11/rotation = Quaternion(-0.0472938, -0.000209975, -0.00191971, 0.998879)
-bones/12/rotation = Quaternion(0.0188845, 0.80296, 0.59504, 0.0287393)
-bones/13/rotation = Quaternion(-0.873065, -7.80148e-05, 0.0111736, 0.487476)
-bones/14/rotation = Quaternion(0.516795, -0.00598556, 0.0106925, 0.856022)
-bones/15/rotation = Quaternion(-0.00143034, -0.0112759, 0.999487, 0.0299512)
-bones/16/rotation = Quaternion(-0.281441, 0.000153586, -0.00360189, 0.959572)
-bones/17/rotation = Quaternion(0.820266, 0.00214274, 0.018643, 0.571675)
-bones/19/position = Vector3(-0.138493, 0.321383, -0.0342815)
-bones/19/rotation = Quaternion(1.35932e-06, 0.928138, 0.372235, 3.38936e-06)
-bones/20/rotation = Quaternion(3.02211e-07, 0.716347, -0.697744, -3.10268e-07)
-bones/21/position = Vector3(0.146556, 0.169276, 0.356588)
-bones/21/rotation = Quaternion(-2.15876e-06, 0.806559, 0.591153, -2.94537e-06)
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_2h1g1")
@@ -46,5 +40,9 @@ shape = SubResource("CapsuleShape3D_2h1g1")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_o1rx4")
+"parameters/conditions/Velociyt > 0" = false
+parameters/Idle/blend_position = Vector2(0, 0)
+parameters/Run/blend_position = Vector2(0, 0)
 
 [editable path="RotationHandle/Char_One1"]

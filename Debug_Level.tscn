@@ -61,10 +61,43 @@ transform = Transform3D(4.37114e-08, 8.9407e-08, -1, 2.66454e-15, -1, -8.9407e-0
 [node name="Pillar_Short_005" parent="Scenery" instance=ExtResource("3_efs41")]
 transform = Transform3D(-0.20698, -0.285404, 0.935791, 0.0616366, -0.958407, -0.278669, 0.976402, 5.64226e-09, 0.215963, -25.4757, 9.16264, 14.1627)
 
+[node name="Pillar_Tall_006" parent="Scenery" instance=ExtResource("2_fusv1")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -57.4553, -7.56629, 14.2493)
+
+[node name="Pillar_Tall_007" parent="Scenery" instance=ExtResource("2_fusv1")]
+transform = Transform3D(-3.0575e-08, -0.27062, -0.699475, -1.18292e-08, 0.699475, -0.27062, 0.75, 0, -3.27835e-08, -67.5394, -8.31834, 12.7793)
+
+[node name="Pillar_Short_006" parent="Scenery" instance=ExtResource("3_efs41")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -62.5109, -7.43474, 16.9003)
+
+[node name="Pillar_Short_007" parent="Scenery" instance=ExtResource("3_efs41")]
+transform = Transform3D(4.37114e-08, 8.9407e-08, -1, 2.66454e-15, -1, -8.9407e-08, -1, 0, -4.37114e-08, -72.7432, 7.86757, 12.4435)
+
+[node name="Pillar_Tall_008" parent="Scenery" instance=ExtResource("2_fusv1")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -79.5524, -7.56629, 14.2493)
+
+[node name="Pillar_Tall_009" parent="Scenery" instance=ExtResource("2_fusv1")]
+transform = Transform3D(-3.0575e-08, -0.27062, -0.699475, -1.18292e-08, 0.699475, -0.27062, 0.75, 0, -3.27835e-08, -89.6365, -8.31834, 12.7296)
+
+[node name="Pillar_Tall_010" parent="Scenery" instance=ExtResource("2_fusv1")]
+transform = Transform3D(-2.09357e-08, 0.163735, -0.731909, 4.35947e-08, 0.731909, 0.163735, 0.75, -3.79726e-08, -2.9948e-08, -109.814, -5.51713, 9.78917)
+
+[node name="Pillar_Short_008" parent="Scenery" instance=ExtResource("3_efs41")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -102.604, -11.7, 16.9003)
+
+[node name="Pillar_Short_009" parent="Scenery" instance=ExtResource("3_efs41")]
+transform = Transform3D(4.37114e-08, 8.9407e-08, -1, 2.66454e-15, -1, -8.9407e-08, -1, 0, -4.37114e-08, -94.8404, 7.86757, 12.4435)
+
+[node name="Pillar_Short_010" parent="Scenery" instance=ExtResource("3_efs41")]
+transform = Transform3D(-0.20698, -0.285404, 0.935791, 0.0616366, -0.958407, -0.278669, 0.976402, 5.64226e-09, 0.215963, -88.9345, 9.16264, 14.1627)
+
 [node name="Platforms" type="Node3D" parent="."]
 
 [node name="Platform_Flat_001" parent="Platforms" instance=ExtResource("4_ek2uq")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.873377, -2, -0.0358882)
+
+[node name="Platform_Flat_010" parent="Platforms" instance=ExtResource("4_ek2uq")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.49556, -4.51006, -0.035888)
 
 [node name="Platform_Flat_007" parent="Platforms" instance=ExtResource("4_ek2uq")]
 transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, -2.72869, -3.11911, 6.72804)
@@ -84,8 +117,32 @@ transform = Transform3D(-4.37021e-08, -0.0206283, 0.999787, -9.01692e-10, 0.9997
 [node name="Platform_Flat_002" parent="Platforms" instance=ExtResource("5_605v0")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6.95023, -2.5324, 1.19209e-07)
 
+[node name="Platform_Flat_009" parent="Platforms" instance=ExtResource("5_605v0")]
+transform = Transform3D(0.15252, 0, 0.9883, 0, 1, 0, -0.9883, 0, 0.15252, 3.40219, -3.38592, 0.0132)
+
 [node name="Platform_Flat_005" parent="Platforms" instance=ExtResource("5_605v0")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -30.9616, -2.5324, 1.19209e-07)
+
+[node name="Platform_Flat_011" parent="Platforms" instance=ExtResource("4_ek2uq")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -49.2143, -1.03805, -0.0358838)
+
+[node name="Platform_Flat_012" parent="Platforms" instance=ExtResource("4_ek2uq")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -51.5833, -3.54811, -0.0358836)
+
+[node name="Platform_Flat_013" parent="Platforms" instance=ExtResource("4_ek2uq")]
+transform = Transform3D(-4.34291e-08, 0.113463, 0.993542, 4.95964e-09, 0.993542, -0.113463, -1, 0, -4.37114e-08, -64.9644, -1.03805, -0.0358838)
+
+[node name="Platform_Flat_014" parent="Platforms" instance=ExtResource("4_ek2uq")]
+transform = Transform3D(-4.34291e-08, 0.113463, 0.993542, 4.95964e-09, 0.993542, -0.113463, -1, 0, -4.37114e-08, -72.9079, -0.267131, -0.0358838)
+
+[node name="Platform_Flat_015" parent="Platforms" instance=ExtResource("5_605v0")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -57.0379, -1.57045, 4.49802e-06)
+
+[node name="Platform_Flat_016" parent="Platforms" instance=ExtResource("5_605v0")]
+transform = Transform3D(0.15252, 0, 0.9883, 0, 1, 0, -0.9883, 0, 0.15252, -46.6855, -2.42397, 0.0132044)
+
+[node name="Platform_Flat_017" parent="Platforms" instance=ExtResource("5_605v0")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -81.0493, -1.57045, 4.49802e-06)
 
 [node name="Background" type="Node3D" parent="."]
 
@@ -113,10 +170,18 @@ transform = Transform3D(25, 1.23507e-06, -1.63931e-06, -1.81215e-06, 3.90612, -2
 [node name="Rock_Large_002" parent="Background" instance=ExtResource("8_hu0ng")]
 transform = Transform3D(-0.0792367, 0, -19.9998, 0, 44.3168, 0, 19.9998, 0, -0.0792367, -22.8622, 3.82313, 44.1175)
 
-[node name="SideScrollerCamera" type="Camera3D" parent="."]
+[node name="SideScrollerCamera" type="Camera3D" parent="." node_paths=PackedStringArray("NodeToTrack")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.56446e-06, 0, -17.8953)
-fov = 22.0
+fov = 35.0
 script = ExtResource("8_fusv1")
+NodeToTrack = NodePath("../Player")
 
 [node name="Player" parent="." instance=ExtResource("9_efs41")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.22268, -1.48322, -2.81736e-07)
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866026, -0.5, 0.75, -0.433013, -50.0877, 0.961949, 4.37881e-06)
+shadow_enabled = true
+
+[node name="Player2" parent="." instance=ExtResource("9_efs41")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.865, -0.521271, 4.09707e-06)

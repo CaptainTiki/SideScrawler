@@ -5433,6 +5433,11 @@ _subresources={
 }
 },
 "nodes": {
+"PATH:AnimationPlayer": {
+"import_tracks/position": 0,
+"import_tracks/rotation": 0,
+"import_tracks/scale": 0
+},
 "PATH:Char_one_backup": {
 "import/skip_import": true
 }
@@ -5453,6 +5458,6 @@ blender/meshes/skins=2
 blender/meshes/export_bones_deforming_mesh_only=false
 blender/materials/unpack_enabled=true
 blender/materials/export_materials=1
-blender/animation/limit_playback=true
+blender/animation/limit_playback=false
 blender/animation/always_sample=true
 blender/animation/group_tracks=true
