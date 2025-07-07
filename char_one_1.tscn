@@ -1,0 +1,34 @@
+[gd_scene load_steps=2 format=3 uid="uid://1u814hukt4qp"]
+
+[ext_resource type="PackedScene" uid="uid://bsvie8k2iibgc" path="res://Character/Player/Char_One1.blend" id="1_wrjg4"]
+
+[node name="Char_One1" instance=ExtResource("1_wrjg4")]
+
+[node name="Skeleton3D" parent="Armature" index="0"]
+bones/0/position = Vector3(-0.00179387, 0.689347, 0.0275725)
+bones/0/rotation = Quaternion(0.00290386, 0.987629, -0.156779, 0.00138824)
+bones/1/rotation = Quaternion(-0.118058, 0.101596, -0.0197143, 0.987599)
+bones/2/rotation = Quaternion(0.0829007, 0.0782268, -0.00974267, 0.993435)
+bones/3/rotation = Quaternion(-0.0293552, 7.54675e-09, 1.64864e-09, 0.999569)
+bones/4/rotation = Quaternion(-0.0566562, 0.00345812, -0.83626, 0.545387)
+bones/5/rotation = Quaternion(-0.347148, 0.248343, 0.00676188, 0.904306)
+bones/6/rotation = Quaternion(0.390572, 0.0199844, -0.279353, 0.876935)
+bones/7/rotation = Quaternion(-0.0672372, -0.0355016, -0.00294793, 0.997101)
+bones/8/rotation = Quaternion(-0.00187531, 0.100099, 0.836461, 0.538804)
+bones/9/rotation = Quaternion(0.16935, 0.456138, 0.191001, 0.852513)
+bones/10/rotation = Quaternion(0.502269, 0.115046, 0.318396, 0.795685)
+bones/11/rotation = Quaternion(-0.0604785, 0.0233829, 0.00129574, 0.997895)
+bones/12/rotation = Quaternion(-0.00490215, 0.599203, 0.800571, -0.00414739)
+bones/13/rotation = Quaternion(-0.248134, -0.00015504, 0.00317564, 0.96872)
+bones/14/rotation = Quaternion(0.624165, -0.0109026, 0.000577054, 0.781217)
+bones/15/rotation = Quaternion(0.000342233, -0.170947, 0.985273, 0.00388785)
+bones/16/rotation = Quaternion(-0.484161, 0.000140041, -0.00619631, 0.874957)
+bones/17/rotation = Quaternion(0.530372, 0.00341077, 0.0100739, 0.847698)
+bones/19/position = Vector3(-0.145987, 0.24937, -0.318513)
+bones/19/rotation = Quaternion(3.13619e-06, 0.512291, 0.858812, 1.87077e-06)
+bones/20/rotation = Quaternion(3.02211e-07, 0.716347, -0.697744, -3.10268e-07)
+bones/21/position = Vector3(0.143349, 0.518207, 0.471909)
+bones/21/rotation = Quaternion(5.524e-07, 0.988493, -0.151269, -3.60975e-06)
+
+[node name="AnimationPlayer" parent="." index="1"]
+autoplay = "Idle"

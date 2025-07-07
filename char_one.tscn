@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cq2ebeejme5gs"]
+
+[ext_resource type="PackedScene" uid="uid://dcinoyxre0eao" path="res://Character/Player/Char_One.blend" id="1_kaqsb"]
+
+[node name="Char_One" instance=ExtResource("1_kaqsb")]
+
+[node name="Char_one_backup" parent="." index="1"]
+visible = false
