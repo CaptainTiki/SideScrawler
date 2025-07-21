@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://h15u1p8e1ban"]
+
+[ext_resource type="PackedScene" uid="uid://bo1e2ix8tts75" path="res://Biomes/Forrest/GroundTiles1.blend" id="1_bq5bu"]
+
+[node name="GroundTiles1" instance=ExtResource("1_bq5bu")]

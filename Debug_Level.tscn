@@ -12,12 +12,12 @@
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qbbn3"]
 
-[sub_resource type="Sky" id="Sky_r1hhx"]
+[sub_resource type="Sky" id="Sky_fusv1"]
 sky_material = SubResource("ProceduralSkyMaterial_qbbn3")
 
 [sub_resource type="Environment" id="Environment_fusv1"]
 background_mode = 2
-sky = SubResource("Sky_r1hhx")
+sky = SubResource("Sky_fusv1")
 
 [node name="Debug_Level" type="Node3D"]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)

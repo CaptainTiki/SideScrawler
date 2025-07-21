@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://do0bc1w5u1su6"]
+
+[ext_resource type="PackedScene" uid="uid://dkmljimjnkwbt" path="res://Biomes/Forrest/Rock_Top.blend" id="1_fgd4p"]
+[ext_resource type="PackedScene" uid="uid://dmod2erogytyt" path="res://Biomes/Forrest/Rock_Bottom.blend" id="2_jxsds"]
+
+[node name="Node" type="Node"]
+
+[node name="Rock_Top2" parent="." instance=ExtResource("1_fgd4p")]
+
+[node name="Rock_Bottom" parent="." instance=ExtResource("2_jxsds")]

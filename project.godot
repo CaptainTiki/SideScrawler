@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="SideScrawler"
-run/main_scene="uid://bd5msej2md0wf"
+run/main_scene="uid://cmhawwsvibu8d"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -47,3 +47,7 @@ Jump={
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":0,"pressure":0.0,"pressed":true,"script":null)
 ]
 }
+
+[rendering]
+
+anti_aliasing/quality/msaa_3d=1
