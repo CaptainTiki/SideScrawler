@@ -1,111 +1,100 @@
-# player.gd
 extends CharacterBody3D
 class_name Player
 
-@export var speed: float = 6.5  # Adjusted for 3D scale (meters per second).
-@export var jump_velocity: float = 6.5  # Adjusted for 3D.
-@export var anim_tree: AnimationTree
-@export var anim_player: AnimationPlayer
-var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
+# Movement settings
+@export var speed: float = 5.0
+@export var jump_velocity: float = 14.0
+@export var gravity: float = 35.0
 
-# Input state variables for animation logic.
-var input_direction: Vector3 = Vector3.ZERO  # Now only X for side-scroller (positive X forward).
-var is_pressing_up: bool = false  # "up" for aim up.
-var is_pressing_down: bool = false  # "down" for crouch.
-
-# Player state (as string matching animation node names).
-var current_state: String = "Idle"
-
-# Signal emitted when the state changes.
-signal state_changed(new_state: String)
-
-# Facing direction for model flip.
+# State variables
+var is_grounded: bool = true
+var is_moving: bool = false
+var is_aim_up: bool = false
+var is_crouching: bool = false
 var facing_right: bool = true
+var is_idle: bool = true
 
-@onready var playback: AnimationNodeStateMachinePlayback = anim_tree.get("parameters/playback")
-@onready var land_detector: RayCast3D = $LandDetector
+# Signals for animation system
+signal grounded_changed(grounded: bool)
+signal movement_changed(moving: bool)
+signal direction_changed(facing_right: bool)
+signal aim_up_changed(aiming_up: bool)
+signal crouch_changed(crouching: bool)
+signal idle_activated()
 
-# Flags for landing logic.
-var expecting_land: bool = false
-var land_finished: bool = true
-
-func _ready() -> void:
-	anim_player.animation_finished.connect(_on_animation_finished)
-
-func _on_animation_finished(anim_name: String) -> void:
-	if anim_name == "land":
-		land_finished = true
+func _ready():
+	# Initialize grounded state
+	_update_grounded_state()
 
 func _physics_process(delta: float) -> void:
-	# Update input states.
-	# Calculate input direction only on X axis (side-scroller).
-	var move_x: float = Input.get_action_strength("Move_Right") - Input.get_action_strength("Move_Left")
-	input_direction = Vector3(move_x, 0, 0).normalized()
-	
-	is_pressing_up = Input.is_action_pressed("Move_Up")
-	is_pressing_down = Input.is_action_pressed("Move_Down")
-	
-	# Determine new state based on inputs and physics.
-	var new_state: String = current_state
-	
-	if is_on_floor():
-		if abs(input_direction.x) > 0.0:  # Running left or right.
-			new_state = "Run"
-		else:
-			if is_pressing_up:
-				new_state = "AimUP"
-			elif is_pressing_down:
-				new_state = "Crouch"
-			else:
-				new_state = "Idle"
-	else:
-		# In air.
-		if current_state in ["Idle", "Run", "AimUP", "Crouch"]:  # Just fell off without jumping.
-			new_state = "Fall"
-			expecting_land = true
-	
-	# Handle jump input (overrides to Jump_Start).
-	if Input.is_action_just_pressed("Jump") and is_on_floor():
-		velocity.y = jump_velocity
-		new_state = "Jump_Start"
-		expecting_land = true
-	
-	# Handle landing anticipation with raycast (while falling).
-	if expecting_land and not is_on_floor() and velocity.y < 0 and land_detector.is_colliding() and current_state == "Fall":
-		new_state = "Land"
-		expecting_land = false
-		land_finished = false
-	
-	# Prevent leaving Land state until animation finished.
-	if current_state == "Land" and not land_finished:
-		new_state = "Land"
-	
-	# Emit signal if state changed.
-	if new_state != current_state:
-		current_state = new_state
-		state_changed.emit(current_state)
-	
-	# Sync logical state with animation tree in case of auto-transitions (e.g., Jump_Start to Fall).
-	if playback.get_current_node() != current_state:
-		current_state = playback.get_current_node()
-	
-	# Apply gravity (Y is up, so negative gravity on Y).
-	if not is_on_floor():
-		velocity.y -= gravity * delta
-	
-	# Horizontal movement (X axis only, no Z).
-	var horizontal_velocity: Vector3 = input_direction * speed
-	velocity.x = horizontal_velocity.x
-	velocity.z = 0.0  # Ensure no Z movement.
+	_handle_input(delta)
+	_apply_gravity(delta)
+	_apply_movement()
+	_update_states()
 	
 	move_and_slide()
+
+func _handle_input(delta: float):
+	# Handle jump
+	if Input.is_action_just_pressed("Jump") and is_grounded:
+		velocity.y = jump_velocity
 	
-	# Handle model flip based on movement direction.
-	# Assuming rotating the entire CharacterBody3D is fine (if collision shape is symmetric).
-	# If not, move this logic to rotate a child model node instead, e.g., $Model.rotation.y.
-	if velocity.x > 0.01 and not facing_right:  # Small threshold to avoid jitter.
-		facing_right = true
-		rotation.y = 0  # Face positive X (forward).
-	elif velocity.x < -0.01 and facing_right:
-		facing_right = false
-		rotation.y = PI  # Rotate 180 degrees to face negative X (left).
+	# Handle horizontal movement
+	var input_dir = Vector2.ZERO
+	if Input.is_action_pressed("Move_Left"):
+		input_dir.x -= 1
+	if Input.is_action_pressed("Move_Right"):
+		input_dir.x += 1
+	
+	# Handle vertical inputs (aim up/crouch)
+	var new_aim_up = Input.is_action_pressed("Move_Up")
+	var new_crouch = Input.is_action_pressed("Move_Down")
+	
+	# Update aim up state
+	if new_aim_up != is_aim_up:
+		is_aim_up = new_aim_up
+		aim_up_changed.emit(is_aim_up)
+	
+	# Update crouch state
+	if new_crouch != is_crouching:
+		is_crouching = new_crouch
+		crouch_changed.emit(is_crouching)
+	
+	# Update movement state
+	var new_moving = input_dir.length() > 0
+	if new_moving != is_moving:
+		is_moving = new_moving
+		movement_changed.emit(is_moving)
+	
+	# Update facing direction
+	if input_dir.x != 0:
+		var new_facing_right = input_dir.x > 0
+		if new_facing_right != facing_right:
+			facing_right = new_facing_right
+			direction_changed.emit(facing_right)
+	
+	# Apply horizontal movement
+	if is_moving:
+		velocity.x = input_dir.x * speed
+	else:
+		velocity.x = move_toward(velocity.x, 0, speed * 2 * delta)
+		
+	if not is_moving and not is_aim_up and not is_crouching and is_grounded:
+		idle_activated.emit()
+
+func _apply_gravity(delta):
+	if not is_grounded:
+		velocity.y -= gravity * delta
+
+func _apply_movement():
+	# Any additional movement logic can go here
+	pass
+
+func _update_states():
+	_update_grounded_state()
+
+func _update_grounded_state():
+	var new_grounded = is_on_floor()
+	if new_grounded != is_grounded:
+		is_grounded = new_grounded
+		grounded_changed.emit(is_grounded)
