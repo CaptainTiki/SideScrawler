@@ -1,0 +1,122 @@
+[gd_resource type="VisualShader" load_steps=14 format=3 uid="uid://qgkk6h7figgx"]
+
+[ext_resource type="Texture2D" uid="uid://tb0m5liaj68o" path="res://Projectiles/FlameTrail.png" id="1_t1ie2"]
+
+[sub_resource type="VisualShaderNodeClamp" id="VisualShaderNodeClamp_t1ie2"]
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_of4u4"]
+texture = ExtResource("1_t1ie2")
+texture_type = 1
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_a5ln8"]
+input_name = "time"
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_8a3xg"]
+default_input_values = [0, Vector2(0, 0), 1, Vector2(2, 0)]
+op_type = 0
+operator = 2
+
+[sub_resource type="VisualShaderNodeUVFunc" id="VisualShaderNodeUVFunc_di8kx"]
+
+[sub_resource type="Gradient" id="Gradient_6s8jh"]
+offsets = PackedFloat32Array(0.171271, 0.541436, 1)
+colors = PackedColorArray(0.384819, 0.0185147, 0.00985841, 1, 4, 0.25, 0.15, 1, 2, 1, 0.3, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_of4u4"]
+gradient = SubResource("Gradient_6s8jh")
+use_hdr = true
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_a5ln8"]
+expanded_output_ports = [0]
+texture = SubResource("GradientTexture1D_of4u4")
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_8a3xg"]
+operator = 1
+
+[sub_resource type="Gradient" id="Gradient_di8kx"]
+offsets = PackedFloat32Array(0, 0.530387, 0.922652, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_q6854"]
+gradient = SubResource("Gradient_di8kx")
+use_hdr = true
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_8ru5q"]
+texture = SubResource("GradientTexture1D_q6854")
+
+[resource]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx, unshaded, shadows_disabled, ambient_light_disabled, fog_disabled;
+
+uniform sampler2D tex_frg_7;
+uniform sampler2D tex_frg_3 : source_color;
+uniform sampler2D tex_frg_9;
+
+
+
+void fragment() {
+// Texture2D:7
+	vec4 n_out7p0 = texture(tex_frg_7, UV);
+
+
+// Input:4
+	float n_out4p0 = TIME;
+
+
+// VectorOp:5
+	vec2 n_in5p1 = vec2(2.00000, 0.00000);
+	vec2 n_out5p0 = vec2(n_out4p0) * n_in5p1;
+
+
+// UVFunc:6
+	vec2 n_in6p1 = vec2(1.00000, 1.00000);
+	vec2 n_out6p0 = n_out5p0 * n_in6p1 + UV;
+
+
+// Texture2D:3
+	vec4 n_out3p0 = texture(tex_frg_3, n_out6p0);
+
+
+// Texture2D:9
+	vec4 n_out9p0 = texture(tex_frg_9, UV);
+
+
+// FloatOp:8
+	float n_out8p0 = n_out3p0.x - n_out9p0.x;
+
+
+// Clamp:10
+	float n_in10p1 = 0.00000;
+	float n_in10p2 = 1.00000;
+	float n_out10p0 = clamp(n_out8p0, n_in10p1, n_in10p2);
+
+
+// Output:0
+	ALBEDO = vec3(n_out7p0.xyz);
+	ALPHA = n_out10p0;
+
+
+}
+"
+graph_offset = Vector2(-276.35, 58.4113)
+flags/unshaded = true
+flags/shadows_disabled = true
+flags/ambient_light_disabled = true
+flags/fog_disabled = true
+nodes/fragment/3/node = SubResource("VisualShaderNodeTexture_of4u4")
+nodes/fragment/3/position = Vector2(-300, 260)
+nodes/fragment/4/node = SubResource("VisualShaderNodeInput_a5ln8")
+nodes/fragment/4/position = Vector2(-1200, 260)
+nodes/fragment/5/node = SubResource("VisualShaderNodeVectorOp_8a3xg")
+nodes/fragment/5/position = Vector2(-820, 260)
+nodes/fragment/6/node = SubResource("VisualShaderNodeUVFunc_di8kx")
+nodes/fragment/6/position = Vector2(-560, 260)
+nodes/fragment/7/node = SubResource("VisualShaderNodeTexture_a5ln8")
+nodes/fragment/7/position = Vector2(-20, -80)
+nodes/fragment/8/node = SubResource("VisualShaderNodeFloatOp_8a3xg")
+nodes/fragment/8/position = Vector2(-100, 300)
+nodes/fragment/9/node = SubResource("VisualShaderNodeTexture_8ru5q")
+nodes/fragment/9/position = Vector2(-340, 580)
+nodes/fragment/10/node = SubResource("VisualShaderNodeClamp_t1ie2")
+nodes/fragment/10/position = Vector2(160, 280)
+nodes/fragment/connections = PackedInt32Array(4, 0, 5, 0, 5, 0, 6, 2, 6, 0, 3, 0, 7, 0, 0, 0, 3, 0, 8, 0, 9, 0, 8, 1, 8, 0, 10, 0, 10, 0, 0, 1)

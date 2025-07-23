@@ -1,10 +1,11 @@
-[gd_scene load_steps=21 format=4 uid="uid://cmhawwsvibu8d"]
+[gd_scene load_steps=22 format=4 uid="uid://cmhawwsvibu8d"]
 
 [ext_resource type="Texture2D" uid="uid://bkhgnw80lngye" path="res://Biomes/Forrest/textures/ImphenziaPixel-BaseColor.png" id="1_sb12i"]
 [ext_resource type="Texture2D" uid="uid://dbg1kn1gl3h5n" path="res://Biomes/Forrest/textures/ImphenziaPixel-Emission.png" id="2_gbhdq"]
 [ext_resource type="Texture2D" uid="uid://bforvtg6b1chs" path="res://Biomes/Forrest/textures/ImphenziaPixel-Attributes.png" id="3_y646j"]
 [ext_resource type="Script" uid="uid://d1t2l04yfex8w" path="res://sidescroller_camera.gd" id="4_lnbra"]
 [ext_resource type="PackedScene" uid="uid://btxud1srvgp6i" path="res://Character/Player/player.tscn" id="5_6emce"]
+[ext_resource type="PackedScene" uid="uid://brlxoijsyabx" path="res://Objects/crate.tscn" id="6_gbhdq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8y0rt"]
 resource_name = "ImphenziaPixPal.001"
@@ -184,3 +185,12 @@ NodeToTrack = NodePath("../Player")
 
 [node name="Player" parent="." instance=ExtResource("5_6emce")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0315629, 1.04591, 0.61971)
+
+[node name="Crate" parent="." instance=ExtResource("6_gbhdq")]
+transform = Transform3D(0.998824, 0, 0.0484837, 0, 1, 0, -0.0484837, 0, 0.998824, 7.52583, 1.94262, 0.625209)
+
+[node name="Crate3" parent="." instance=ExtResource("6_gbhdq")]
+transform = Transform3D(0.692055, 0, 0.721845, 0, 1, 0, -0.721845, 0, 0.692055, 8.46609, 3.62197, 0.625209)
+
+[node name="Crate2" parent="." instance=ExtResource("6_gbhdq")]
+transform = Transform3D(0.928641, 0, 0.370979, 0, 1, 0, -0.370979, 0, 0.928641, 9.43237, 1.94262, 0.625209)
