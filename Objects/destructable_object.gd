@@ -1,9 +1,10 @@
-extends StaticBody3D
+extends RigidBody3D
 class_name DestructibleObject
 
 # Destruction effects
 @export var destruction_effect: PackedScene  # Spawn this when destroyed
 @export var spawn_effect_at_center: bool = true  # Or at hit point
+@export var destruction_pieces: PackedScene #pieces of the box as destroyed
 
 # Visual feedback settings
 @export var hit_flash_duration: float = 0.1
@@ -11,6 +12,7 @@ class_name DestructibleObject
 
 # Component references
 @onready var health_component: HealthComponent = $HealthComponent
+@onready var mesh: Node3D = $Mesh
 
 # Internal
 var original_material: Material
@@ -121,13 +123,19 @@ func _destroy_object():
 		return
 		
 	is_destroyed = true
-	print("Object destroyed!")
 	
 	# Spawn destruction effect if provided
 	if destruction_effect:
 		_spawn_destruction_effect()
 	
-	# Remove object
+	# Spawn the pieces
+	if destruction_pieces:
+		var pieces = destruction_pieces.instantiate()
+		get_parent().add_child(pieces)
+		pieces.global_position = global_position
+		pieces.rotation = rotation
+		
+	# Remove the original object immediately
 	queue_free()
 
 func _spawn_destruction_effect():

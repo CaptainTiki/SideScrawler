@@ -35,7 +35,7 @@ func take_damage(amount: int) -> bool:
 	health_changed.emit(old_health, current_health)
 	damaged.emit(amount, current_health)
 	
-	print("HealthComponent: Took ", amount, " damage. Health: ", current_health, "/", max_health)
+	#print("HealthComponent: Took ", amount, " damage. Health: ", current_health, "/", max_health)
 	
 	# Check for death
 	if current_health <= 0 and not is_dead:
@@ -60,7 +60,7 @@ func heal(amount: int) -> bool:
 	if current_health != old_health:
 		health_changed.emit(old_health, current_health)
 		healed.emit(amount, current_health)
-		print("HealthComponent: Healed ", amount, ". Health: ", current_health, "/", max_health)
+		#print("HealthComponent: Healed ", amount, ". Health: ", current_health, "/", max_health)
 		return true
 	
 	return false
@@ -80,7 +80,7 @@ func _handle_death():
 		return
 		
 	is_dead = true
-	print("HealthComponent: Died!")
+	#print("HealthComponent: Died!")
 	died.emit()
 
 func _start_invincibility():

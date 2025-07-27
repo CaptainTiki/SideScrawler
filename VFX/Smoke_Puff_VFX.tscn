@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://dqehu4pqfja4n"]
+
+[ext_resource type="Script" uid="uid://by3vgnewwu04d" path="res://VFX/gpu_particles_autoemit.gd" id="1_e3370"]
+[ext_resource type="ArrayMesh" uid="uid://uoxff8taoxrq" path="res://VFX/SmokeParticle.tres" id="1_qprfi"]
+
+[sub_resource type="Curve" id="Curve_qprfi"]
+_data = [Vector2(0.00357143, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.0220366), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_e3370"]
+curve = SubResource("Curve_qprfi")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_e3370"]
+particle_flag_rotate_y = true
+emission_shape = 1
+emission_sphere_radius = 1.0
+angle_min = -180.0
+angle_max = 180.0
+direction = Vector3(0, 1, 0)
+spread = 10.0
+initial_velocity_min = 1.0
+initial_velocity_max = 3.0
+gravity = Vector3(0, 2.5, 0)
+scale_min = 0.2
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_e3370")
+
+[node name="SmokePuff" type="Node3D" node_paths=PackedStringArray("particles")]
+script = ExtResource("1_e3370")
+particles = NodePath("GPUParticles3D")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 16
+one_shot = true
+explosiveness = 0.5
+process_material = SubResource("ParticleProcessMaterial_e3370")
+draw_pass_1 = ExtResource("1_qprfi")

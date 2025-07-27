@@ -1,25 +1,31 @@
-[gd_scene load_steps=5 format=3 uid="uid://brlxoijsyabx"]
+[gd_scene load_steps=7 format=3 uid="uid://brlxoijsyabx"]
 
 [ext_resource type="Script" uid="uid://jcjifkteypft" path="res://Objects/destructable_object.gd" id="1_3rqyi"]
 [ext_resource type="PackedScene" uid="uid://cwtpuof3w8cub" path="res://Objects/Box.blend" id="1_hi1v7"]
+[ext_resource type="PackedScene" uid="uid://dmqtbq8ar5tu7" path="res://Objects/Broken_Box.tscn" id="2_jisnk"]
+[ext_resource type="PackedScene" uid="uid://cavxqttmvmtpp" path="res://VFX/explosion_large.tscn" id="2_nlfiw"]
 [ext_resource type="PackedScene" uid="uid://c3cwoen52tua8" path="res://Components/health_component.tscn" id="3_lnv5e"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tiq2w"]
 size = Vector3(2, 2, 2)
 
-[node name="Crate" type="StaticBody3D"]
+[node name="Crate" type="RigidBody3D"]
 axis_lock_linear_z = true
+mass = 5.0
+can_sleep = false
 script = ExtResource("1_3rqyi")
+destruction_effect = ExtResource("2_nlfiw")
+destruction_pieces = ExtResource("2_jisnk")
 
-[node name="Box" parent="." instance=ExtResource("1_hi1v7")]
+[node name="Mesh" parent="." instance=ExtResource("1_hi1v7")]
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
 shape = SubResource("BoxShape3D_tiq2w")
 
 [node name="HealthComponent" parent="." instance=ExtResource("3_lnv5e")]
-max_health = 5
-current_health = 5
+max_health = 2
+current_health = 2
 invincibility_time = 0.25
 
-[editable path="Box"]
+[editable path="Mesh"]

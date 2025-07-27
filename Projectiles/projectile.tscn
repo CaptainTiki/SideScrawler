@@ -1,8 +1,9 @@
-[gd_scene load_steps=19 format=4 uid="uid://c3bxhc0u0ltcf"]
+[gd_scene load_steps=20 format=4 uid="uid://c3bxhc0u0ltcf"]
 
 [ext_resource type="Script" uid="uid://c5ow7cumnm50i" path="res://Projectiles/projectile.gd" id="1_3v6ly"]
 [ext_resource type="Shader" uid="uid://77ouk88akmiv" path="res://Projectiles/fire_ball_flames.tres" id="1_08w86"]
 [ext_resource type="Shader" uid="uid://cjjronkpnhy0r" path="res://Projectiles/fire_ball_solid.tres" id="2_3v6ly"]
+[ext_resource type="PackedScene" uid="uid://d2bkahldsulrx" path="res://VFX/explosion_small.tscn" id="2_q1bbl"]
 [ext_resource type="Shader" uid="uid://qgkk6h7figgx" path="res://Projectiles/fire_trail.tres" id="3_q1bbl"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_3v6ly"]
@@ -95,6 +96,7 @@ size = Vector2(0.2, 0.1)
 
 [node name="Projectile" type="Area3D"]
 script = ExtResource("1_3v6ly")
+impact_effect = ExtResource("2_q1bbl")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_3v6ly")

@@ -64,8 +64,6 @@ func _fire_projectile():
 	
 	# Set projectile properties
 	projectile.setup(direction, projectile_speed, projectile_lifetime)
-	
-	print("Fired projectile - Direction: ", direction)
 
 func _get_projectile_direction() -> Vector3:
 	if player.is_aim_up:
