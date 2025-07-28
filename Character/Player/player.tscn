@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://btxud1srvgp6i"]
+[gd_scene load_steps=40 format=3 uid="uid://btxud1srvgp6i"]
 
 [ext_resource type="Script" uid="uid://brxu4fn4oe7ua" path="res://Character/Player/player.gd" id="1_vnk41"]
 [ext_resource type="PackedScene" uid="uid://dr5d0r14a4ly3" path="res://Character/Player/Char_One_New.blend" id="2_2h1g1"]
@@ -23,6 +23,9 @@ animation = &"Jump"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dldcg"]
 animation = &"Run"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ta2qq"]
+animation = &"Shoot"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4kwrd"]
 advance_mode = 2
@@ -67,6 +70,14 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yu2d5"]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pnbdk"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xrppt"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0fghp"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_38v4x"]
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_0fghp"]
 states/AimUP/node = SubResource("AnimationNodeAnimation_2h1g1")
 states/AimUP/position = Vector2(710, 286)
@@ -76,11 +87,13 @@ states/End/position = Vector2(1409, 100)
 states/Idle/node = SubResource("AnimationNodeAnimation_o1rx4")
 states/Idle/position = Vector2(352, 100)
 states/Jump/node = SubResource("AnimationNodeAnimation_vnk41")
-states/Jump/position = Vector2(518, -44)
+states/Jump/position = Vector2(539, -106)
 states/Run/node = SubResource("AnimationNodeAnimation_dldcg")
 states/Run/position = Vector2(710, 100)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_4kwrd"), "Idle", "Jump", SubResource("AnimationNodeStateMachineTransition_2h1g1"), "Jump", "Idle", SubResource("AnimationNodeStateMachineTransition_7t67c"), "Idle", "AimUP", SubResource("AnimationNodeStateMachineTransition_1spju"), "AimUP", "Idle", SubResource("AnimationNodeStateMachineTransition_ta2qq"), "Idle", "Crouch", SubResource("AnimationNodeStateMachineTransition_o1rx4"), "Crouch", "Idle", SubResource("AnimationNodeStateMachineTransition_frffh"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_3jy5p"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_mgp1s"), "Run", "Jump", SubResource("AnimationNodeStateMachineTransition_dldcg"), "Jump", "Run", SubResource("AnimationNodeStateMachineTransition_m16p6"), "AimUP", "Run", SubResource("AnimationNodeStateMachineTransition_yaevq"), "Run", "AimUP", SubResource("AnimationNodeStateMachineTransition_odym8"), "Crouch", "Run", SubResource("AnimationNodeStateMachineTransition_h24ny"), "Run", "Crouch", SubResource("AnimationNodeStateMachineTransition_yoixh"), "Crouch", "Jump", SubResource("AnimationNodeStateMachineTransition_42rjo"), "Jump", "Crouch", SubResource("AnimationNodeStateMachineTransition_ckq5c"), "Jump", "AimUP", SubResource("AnimationNodeStateMachineTransition_6xbp4"), "AimUP", "Jump", SubResource("AnimationNodeStateMachineTransition_di157"), "Crouch", "AimUP", SubResource("AnimationNodeStateMachineTransition_2ha80"), "AimUP", "Crouch", SubResource("AnimationNodeStateMachineTransition_yu2d5")]
-graph_offset = Vector2(-236, -87)
+states/Shoot/node = SubResource("AnimationNodeAnimation_ta2qq")
+states/Shoot/position = Vector2(352, -44)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_4kwrd"), "Idle", "Jump", SubResource("AnimationNodeStateMachineTransition_2h1g1"), "Jump", "Idle", SubResource("AnimationNodeStateMachineTransition_7t67c"), "Idle", "AimUP", SubResource("AnimationNodeStateMachineTransition_1spju"), "AimUP", "Idle", SubResource("AnimationNodeStateMachineTransition_ta2qq"), "Idle", "Crouch", SubResource("AnimationNodeStateMachineTransition_o1rx4"), "Crouch", "Idle", SubResource("AnimationNodeStateMachineTransition_frffh"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_3jy5p"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_mgp1s"), "Run", "Jump", SubResource("AnimationNodeStateMachineTransition_dldcg"), "Jump", "Run", SubResource("AnimationNodeStateMachineTransition_m16p6"), "AimUP", "Run", SubResource("AnimationNodeStateMachineTransition_yaevq"), "Run", "AimUP", SubResource("AnimationNodeStateMachineTransition_odym8"), "Crouch", "Run", SubResource("AnimationNodeStateMachineTransition_h24ny"), "Run", "Crouch", SubResource("AnimationNodeStateMachineTransition_yoixh"), "Crouch", "Jump", SubResource("AnimationNodeStateMachineTransition_42rjo"), "Jump", "Crouch", SubResource("AnimationNodeStateMachineTransition_ckq5c"), "Jump", "AimUP", SubResource("AnimationNodeStateMachineTransition_6xbp4"), "AimUP", "Jump", SubResource("AnimationNodeStateMachineTransition_di157"), "Crouch", "AimUP", SubResource("AnimationNodeStateMachineTransition_2ha80"), "AimUP", "Crouch", SubResource("AnimationNodeStateMachineTransition_yu2d5"), "Idle", "Shoot", SubResource("AnimationNodeStateMachineTransition_pnbdk"), "Shoot", "Idle", SubResource("AnimationNodeStateMachineTransition_xrppt"), "Shoot", "Jump", SubResource("AnimationNodeStateMachineTransition_0fghp"), "Jump", "Shoot", SubResource("AnimationNodeStateMachineTransition_38v4x")]
+graph_offset = Vector2(-104, -172)
 
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 0
@@ -148,7 +161,7 @@ bones/46/position = Vector3(-0.150672, 0.523815, 0.520052)
 bones/47/position = Vector3(-0.370842, 1.31232, -0.503589)
 
 [node name="Wand" parent="RotationHandle/Char_One_New/Armature/Skeleton3D" index="0"]
-transform = Transform3D(0.561563, 0.769395, -0.304432, -0.773139, 0.356827, -0.524338, -0.294794, 0.529817, 0.79523, -0.400998, 1.52054, -0.871424)
+transform = Transform3D(0.561562, 0.769395, -0.304432, -0.773139, 0.356826, -0.524338, -0.294794, 0.529817, 0.79523, -0.400998, 1.52054, -0.871424)
 
 [node name="Muzzle" type="Node3D" parent="RotationHandle/Char_One_New/Armature/Skeleton3D/Wand" index="1"]
 transform = Transform3D(1, 0, -7.45058e-09, 0, 1, 5.58794e-09, -3.72529e-09, 3.72529e-09, 1, 0, 0.1, 2)
