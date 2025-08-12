@@ -37,18 +37,18 @@ func _handle_shooting():
 	var state_machine = animation_tree.get("parameters/playback")
 	var current_state = state_machine.get_current_node()
 	
-	# Check if we should transition to shoot animation first
-	if current_state == "Idle" or current_state == "Run":
-		# Travel to shoot animation first, then fire
-		state_machine.travel("Shoot")
-		# Start the 2 second timer to return to appropriate state
-		animation_tree._start_shoot_timer()
-		# Wait a brief moment for animation to start, then fire
-		await get_tree().create_timer(0.1).timeout
-		_fire_projectile()
-	else:
-		# Fire immediately without animation change (crouch, aim up, jump, etc.)
-		_fire_projectile()
+        # Check if we should transition to shoot animation first
+        if current_state == "Idle":
+                # Travel to shoot animation first, then fire
+                state_machine.travel("Shoot")
+                # Start the 2 second timer to return to appropriate state
+                animation_tree._start_shoot_timer()
+                # Wait a brief moment for animation to start, then fire
+                await get_tree().create_timer(0.1).timeout
+                _fire_projectile()
+        else:
+                # Fire immediately without animation change (crouch, aim up, jump, run, etc.)
+                _fire_projectile()
 
 func _fire_projectile():
 	if not projectile_scene or not muzzle:
