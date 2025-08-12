@@ -54,14 +54,20 @@ func _handle_input(delta: float):
 	if new_aim_up != is_aim_up:
 		is_aim_up = new_aim_up
 		aim_up_changed.emit(is_aim_up)
-	
+		if is_aim_up and is_moving:
+			is_moving = false
+			movement_changed.emit(false)
+
 	# Update crouch state
 	if new_crouch != is_crouching:
 		is_crouching = new_crouch
 		crouch_changed.emit(is_crouching)
-	
+		if is_crouching and is_moving:
+			is_moving = false
+			movement_changed.emit(false)
+
 	# Update movement state
-	var new_moving = input_dir.length() > 0
+	var new_moving = input_dir.length() > 0 and not new_aim_up and not new_crouch
 	if new_moving != is_moving:
 		is_moving = new_moving
 		movement_changed.emit(is_moving)
@@ -74,10 +80,10 @@ func _handle_input(delta: float):
 			direction_changed.emit(facing_right)
 	
 	# Apply horizontal movement
-	if is_moving:
+	if is_moving and not is_aim_up and not is_crouching:
 		velocity.x = input_dir.x * speed
 	else:
-		velocity.x = move_toward(velocity.x, 0, speed * 2 * delta)
+		velocity.x = 0
 		
 	if not is_moving and not is_aim_up and not is_crouching and is_grounded:
 		idle_activated.emit()
