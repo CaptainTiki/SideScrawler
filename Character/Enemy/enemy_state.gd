@@ -5,10 +5,10 @@ var enemy: Enemy
 var state_component: StateComponent
 
 func enter() -> void:
-    pass
+	pass
 
 func exit() -> void:
-    pass
+	pass
 
-func physics_update(delta: float) -> void:
-    pass
+func physics_update(_delta: float) -> void:
+	pass

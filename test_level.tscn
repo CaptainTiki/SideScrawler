@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://cmhawwsvibu8d"]
+[gd_scene load_steps=28 format=4 uid="uid://cmhawwsvibu8d"]
 
 [ext_resource type="Texture2D" uid="uid://bkhgnw80lngye" path="res://Biomes/Forrest/textures/ImphenziaPixel-BaseColor.png" id="1_sb12i"]
 [ext_resource type="Texture2D" uid="uid://dbg1kn1gl3h5n" path="res://Biomes/Forrest/textures/ImphenziaPixel-Emission.png" id="2_gbhdq"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://drd68js2ge6fe" path="res://Biomes/Forrest/Rock_Large.001.blend" id="8_lowby"]
 [ext_resource type="PackedScene" uid="uid://3r6j7a4ouln4" path="res://Biomes/Forrest/Rock_Large.002.blend" id="9_58smv"]
 [ext_resource type="PackedScene" uid="uid://dqehu4pqfja4n" path="res://VFX/Smoke_Puff_VFX.tscn" id="10_lowby"]
+[ext_resource type="PackedScene" uid="uid://cif642q5rf3r1" path="res://Character/SlimeMonster/slime_monster.tscn" id="11_58smv"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8y0rt"]
 resource_name = "ImphenziaPixPal.001"
@@ -242,3 +243,6 @@ destruction_effect = ExtResource("10_lowby")
 [node name="Crate6" parent="Objects" instance=ExtResource("6_gbhdq")]
 transform = Transform3D(0.928641, 0, 0.370979, 0, 1, 0, -0.370979, 0, 0.928641, 5.75251, 1.94262, 0.625209)
 destruction_effect = ExtResource("10_lowby")
+
+[node name="Enemy" parent="." instance=ExtResource("11_58smv")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 23.5129, 5.35174, 0.684551)

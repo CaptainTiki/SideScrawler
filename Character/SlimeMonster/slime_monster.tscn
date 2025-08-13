@@ -1,0 +1,61 @@
+[gd_scene load_steps=9 format=3 uid="uid://cif642q5rf3r1"]
+
+[ext_resource type="Script" uid="uid://b2g8nm4we206f" path="res://Character/Enemy/enemy.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://c3cwoen52tua8" path="res://Components/health_component.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://bw5b8cp71npdm" path="res://Character/SlimeMonster/SlimeMonster.blend" id="2_j5ho3"]
+[ext_resource type="Script" uid="uid://bw62seyjjhrbq" path="res://Character/Enemy/state_component.gd" id="3"]
+[ext_resource type="Script" uid="uid://njsuyrpn7brh" path="res://Character/Enemy/States/idle_state.gd" id="4"]
+[ext_resource type="Script" uid="uid://b2ev3nlia1774" path="res://Character/Enemy/States/wander_state.gd" id="5"]
+[ext_resource type="Script" uid="uid://dshoe7itupdgy" path="res://Character/Enemy/States/chase_state.gd" id="6"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6w2kh"]
+radius = 0.25
+height = 0.6
+
+[node name="Slime_Monster" type="CharacterBody3D"]
+axis_lock_linear_z = true
+script = ExtResource("1")
+
+[node name="Mesh" parent="." instance=ExtResource("2_j5ho3")]
+transform = Transform3D(-2.98023e-08, 0, -1, 0, 1, 0, 1, 0, -2.98023e-08, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_6w2kh")
+
+[node name="VisibleOnScreenEnabler3D" type="VisibleOnScreenEnabler3D" parent="."]
+aabb = AABB(-0.25, -0.25, -0.25, 0.5, 0.5, 0.5)
+
+[node name="HealthComponent" parent="." instance=ExtResource("2")]
+
+[node name="WallCheck" type="RayCast3D" parent="."]
+target_position = Vector3(1, 0, 0)
+
+[node name="FloorCheck" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
+target_position = Vector3(0.5, -1, 0)
+
+[node name="PlayerCheck" type="RayCast3D" parent="."]
+target_position = Vector3(5, 0, 0)
+
+[node name="StateComponent" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3")
+initial_state = NodePath("IdleState")
+
+[node name="IdleState" type="Node" parent="StateComponent" node_paths=PackedStringArray("wander_state", "chase_state", "player_ray")]
+script = ExtResource("4")
+wander_state = NodePath("../WanderState")
+chase_state = NodePath("../WanderState")
+player_ray = NodePath("../../PlayerCheck")
+
+[node name="WanderState" type="Node" parent="StateComponent" node_paths=PackedStringArray("chase_state", "idle_state", "wall_ray", "floor_ray", "player_ray")]
+script = ExtResource("5")
+chase_state = NodePath("../ChaseState")
+idle_state = NodePath("../IdleState")
+wall_ray = NodePath("../../WallCheck")
+floor_ray = NodePath("../../FloorCheck")
+player_ray = NodePath("../../PlayerCheck")
+
+[node name="ChaseState" type="Node" parent="StateComponent" node_paths=PackedStringArray("lost_state")]
+script = ExtResource("6")
+player_ray_path = NodePath("../../PlayerCheck")
+lost_state = NodePath("../IdleState")

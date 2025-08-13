@@ -34,7 +34,7 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 
-func _handle_input(delta: float):
+func _handle_input(_delta: float):
 	# Handle jump
 	if Input.is_action_just_pressed("Jump") and is_grounded:
 		velocity.y = jump_velocity
