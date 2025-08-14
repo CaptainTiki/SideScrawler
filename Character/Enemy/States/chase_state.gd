@@ -23,12 +23,13 @@ func physics_update(_delta: float) -> void:
 	if dist_sq <= attack_range_sq:
 		enemy.attack(player)
 		return
-	var dir: Vector3 = to_player.normalized()
-	enemy.velocity.x = dir.x * speed
-	enemy.move_and_slide()
-	if player_ray:
-		var sign_x: float = sign(dir.x)
-		player_ray.target_position.x = sign_x * abs(player_ray.target_position.x)
+        var dir: Vector3 = to_player.normalized()
+        enemy.set_facing_right(dir.x > 0)
+        enemy.velocity.x = dir.x * speed
+        enemy.move_and_slide()
+        if player_ray:
+                var sign_x: float = sign(dir.x)
+                player_ray.target_position.x = sign_x * abs(player_ray.target_position.x)
 
 func _acquire_player() -> bool:
 	if player_ray and player_ray.is_colliding():
