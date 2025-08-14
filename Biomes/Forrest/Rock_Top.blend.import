@@ -36,6 +36,8 @@ _subresources={
 "nodes": {
 "PATH:Rock_Top": {
 "generate/physics": true,
+"physics/layer": 256,
+"physics/mask": 563,
 "physics/shape_type": 1
 }
 }

@@ -24,9 +24,12 @@ func _ready():
 	current_health = max_health
 
 func take_damage(amount: int) -> bool:
+
 	# Return false if damage was blocked
 	if is_dead or is_invincible or amount <= 0:
 		return false
+	
+	print("take damage: ", str(amount))
 	
 	var old_health = current_health
 	current_health = max(0, current_health - amount)
@@ -86,7 +89,7 @@ func _handle_death():
 func _start_invincibility():
 	if is_invincible:
 		return
-		
+	print("start invul")
 	is_invincible = true
 	invincibility_started.emit()
 	
@@ -99,6 +102,7 @@ func _start_invincibility():
 	timer.start()
 
 func _end_invincibility():
+	print("end invul")
 	is_invincible = false
 	invincibility_ended.emit()
 	

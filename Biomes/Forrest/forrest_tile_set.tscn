@@ -7,4 +7,13 @@
 
 [node name="Rock_Top2" parent="." instance=ExtResource("1_fgd4p")]
 
+[node name="StaticBody3D" parent="Rock_Top2/Rock_Top" index="0"]
+collision_layer = 257
+
 [node name="Rock_Bottom" parent="." instance=ExtResource("2_jxsds")]
+
+[node name="StaticBody3D" parent="Rock_Bottom/Bottom_Cube" index="0"]
+collision_layer = 257
+
+[editable path="Rock_Top2"]
+[editable path="Rock_Bottom"]

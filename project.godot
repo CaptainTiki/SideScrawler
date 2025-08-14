@@ -53,6 +53,15 @@ Shoot_Primary={
 ]
 }
 
+[layer_names]
+
+3d_physics/layer_1="Player"
+3d_physics/layer_2="Projectiles"
+3d_physics/layer_5="Enemy"
+3d_physics/layer_6="Hazard"
+3d_physics/layer_9="Platform"
+3d_physics/layer_10="Environment"
+
 [rendering]
 
 anti_aliasing/quality/msaa_3d=1

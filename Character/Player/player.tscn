@@ -96,7 +96,7 @@ transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition
 graph_offset = Vector2(-104, -172)
 
 [node name="Player" type="CharacterBody3D"]
-collision_layer = 0
+collision_mask = 816
 axis_lock_linear_z = true
 script = ExtResource("1_vnk41")
 
@@ -187,5 +187,8 @@ player = NodePath("..")
 muzzle = NodePath("../RotationHandle/Char_One_New/Armature/Skeleton3D/Wand/Muzzle")
 
 [node name="HealthComponent" parent="." instance=ExtResource("6_ta2qq")]
+max_health = 10
+current_health = 10
+invincibility_time = 1.0
 
 [editable path="RotationHandle/Char_One_New"]

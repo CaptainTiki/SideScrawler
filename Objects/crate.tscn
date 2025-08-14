@@ -10,6 +10,8 @@
 size = Vector3(2, 2, 2)
 
 [node name="Crate" type="RigidBody3D"]
+collision_layer = 512
+collision_mask = 275
 axis_lock_linear_z = true
 mass = 5.0
 can_sleep = false

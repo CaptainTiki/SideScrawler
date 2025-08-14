@@ -95,6 +95,8 @@ gravity = Vector3(0, 0, 0)
 size = Vector2(0.2, 0.1)
 
 [node name="Projectile" type="Area3D"]
+collision_layer = 34
+collision_mask = 785
 script = ExtResource("1_3v6ly")
 impact_effect = ExtResource("2_q1bbl")
 
