@@ -925,6 +925,7 @@ metadata/_editor_floor_ = Vector3(0, 0, 0)
 [node name="RC_W_Mid" type="Node3D" parent="Connectors" groups=["Room_Connectors"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -64, 0, 0)
 script = ExtResource("5_h7fj7")
+facing = 3
 size_cells = Vector2i(1, 2)
 
 [node name="RC_E_Top" type="Node3D" parent="Connectors" groups=["Room_Connectors"]]

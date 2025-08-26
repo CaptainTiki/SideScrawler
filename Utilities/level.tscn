@@ -24,6 +24,7 @@ camera = NodePath("SideScrollerCamera")
 script = ExtResource("1_usqhr")
 entrance_scene = ExtResource("3_il3n5")
 rooms_dir = "res://Biomes/Brick/Rooms/"
+target_room_count = 12
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_qpi6k")
