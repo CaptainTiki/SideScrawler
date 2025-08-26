@@ -9,11 +9,11 @@ class_name EnemyWanderState
 @export var floor_ray: RayCast3D
 @export var player_ray: RayCast3D
 
-var direction: float = 1.0
+var direction: int = 1.0
 var timer: Timer
 
 func enter() -> void:
-	direction = sign(randf())
+	direction = sign(randi())
 	if timer:
 		timer.queue_free()
 	timer = Timer.new()
@@ -23,6 +23,7 @@ func enter() -> void:
 	add_child(timer)
 	timer.start()
 	enemy.set_facing(direction)
+	enemy.play_anim("Walk")
 
 func physics_update(delta: float) -> void:
 	#player detection

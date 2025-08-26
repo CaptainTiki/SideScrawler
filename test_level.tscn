@@ -186,9 +186,15 @@ light_color = Color(0.869762, 0.872311, 0.793344, 1)
 light_energy = 0.838
 shadow_enabled = true
 
+<<<<<<< Updated upstream
 [node name="SideScrollerCamera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.997564, 0.0697565, 0, -0.0697565, 0.997564, 0, 4, 16)
 fov = 28.0
+=======
+[node name="SideScrollerCamera" type="Camera3D" parent="." node_paths=PackedStringArray("NodeToTrack")]
+transform = Transform3D(1, 0, 0, 0, 0.997564, 0.0697565, 0, -0.0697565, 0.997564, 0, 5, 16)
+fov = 34.0
+>>>>>>> Stashed changes
 script = ExtResource("4_lnbra")
 
 [node name="Player" parent="." instance=ExtResource("5_6emce")]

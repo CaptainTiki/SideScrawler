@@ -13,6 +13,7 @@ var player: Player
 
 func enter() -> void:
 	player = null  # reacquire cleanly on enter
+	enemy.play_anim("Walk")
 
 func physics_update(delta: float) -> void:
 	if not _acquire_player():

@@ -19,6 +19,7 @@ func enter() -> void:
 	_t = 0.0
 	_launched = false
 	player = null
+	enemy.play_anim("Walk")
 
 	# face player if we can see them
 	if player_ray and player_ray.is_colliding():

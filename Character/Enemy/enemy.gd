@@ -1,12 +1,14 @@
 extends CharacterBody3D
 class_name Enemy
 
-@export var touch_damage: float = 1
+@export var touch_damage: int = 1
 
 @onready var health_component: HealthComponent = get_node_or_null("HealthComponent")
 @onready var state_component: StateComponent = get_node_or_null("StateComponent")
 @onready var rotation_handle: Node3D = get_node_or_null("RotationHandle")
 @onready var touch_damage_area: Area3D = $TouchDamageArea
+
+@export var animation_player: AnimationPlayer
 
 var max_fall_speed: float = 9.8
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -18,7 +20,7 @@ func _ready() -> void:
 	$VisibleOnScreenEnabler3D.screen_entered.connect(_enabled_fired)
 	$VisibleOnScreenEnabler3D.screen_exited.connect(_disabled_fired)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 func _enabled_fired():
@@ -36,6 +38,14 @@ func attack(target: Player) -> void:
 		var target_health: HealthComponent = target.get_node_or_null("HealthComponent")
 		if target_health:
 				target_health.take_damage(1)
+
+func play_anim(name: String, custom_blend := -1.0, custom_speed := 1.0, from_end := false) -> void:
+	if animation_player:
+		animation_player.play(name, custom_blend, custom_speed, from_end)
+
+func stop_anim() -> void:
+	if animation_player:
+		animation_player.stop()
 
 func _on_touch_body_entered(body: Node) -> void:
 	# Either check the class or a group; group is flexible:

@@ -19,6 +19,7 @@ func enter() -> void:
 	timer.timeout.connect(func(): state_component.transition_to(wander_state))
 	add_child(timer)
 	timer.start()
+	enemy.play_anim("Idle")
 
 func physics_update(_delta: float) -> void:
 	if player_ray and player_ray.is_colliding() and player_ray.get_collider() is Player:
