@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://das43kxomu0bf" path="res://Biomes/Forrest/Platform_Flat.002.blend" id="5_605v0"]
 [ext_resource type="PackedScene" uid="uid://bvhp2fq468xdj" path="res://Biomes/Forrest/Wall_Panel.001.blend" id="6_0ctf1"]
 [ext_resource type="PackedScene" uid="uid://drd68js2ge6fe" path="res://Biomes/Forrest/Rock_Large.001.blend" id="7_beo4t"]
-[ext_resource type="Script" uid="uid://d1t2l04yfex8w" path="res://sidescroller_camera.gd" id="8_fusv1"]
+[ext_resource type="Script" uid="uid://d1t2l04yfex8w" path="res://Utilities/sidescroller_camera.gd" id="8_fusv1"]
 [ext_resource type="PackedScene" uid="uid://3r6j7a4ouln4" path="res://Biomes/Forrest/Rock_Large.002.blend" id="8_hu0ng"]
 [ext_resource type="PackedScene" uid="uid://btxud1srvgp6i" path="res://Character/Player/player.tscn" id="9_efs41"]
 

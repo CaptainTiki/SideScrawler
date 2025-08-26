@@ -1,0 +1,44 @@
+[gd_scene load_steps=9 format=3 uid="uid://em1hfrnjxsoi"]
+
+[ext_resource type="Script" uid="uid://fmch7ius1bf5" path="res://Utilities/level.gd" id="1_2fbmk"]
+[ext_resource type="Script" uid="uid://dcrudq4q2uck" path="res://Utilities/level_generator.gd" id="1_usqhr"]
+[ext_resource type="Script" uid="uid://d1t2l04yfex8w" path="res://Utilities/sidescroller_camera.gd" id="3_47mxx"]
+[ext_resource type="PackedScene" uid="uid://bxwnwp26uib0c" path="res://Biomes/Brick/Rooms/room_bricks_000.tscn" id="3_il3n5"]
+[ext_resource type="PackedScene" uid="uid://btxud1srvgp6i" path="res://Character/Player/player.tscn" id="5_qpi6k"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_il3n5"]
+
+[sub_resource type="Sky" id="Sky_r1hhx"]
+sky_material = SubResource("ProceduralSkyMaterial_il3n5")
+
+[sub_resource type="Environment" id="Environment_qpi6k"]
+background_mode = 2
+sky = SubResource("Sky_r1hhx")
+
+[node name="Level" type="Node3D" node_paths=PackedStringArray("player", "camera")]
+script = ExtResource("1_2fbmk")
+player = NodePath("Player")
+camera = NodePath("SideScrollerCamera")
+
+[node name="Level_Generator" type="Node3D" parent="."]
+script = ExtResource("1_usqhr")
+entrance_scene = ExtResource("3_il3n5")
+rooms_dir = "res://Biomes/Brick/Rooms/"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_qpi6k")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0.434402, -0.404026, 0.805021, -0.247578, 0.805768, 0.537998, 0, 3.45772, 6.0186)
+light_color = Color(0.869762, 0.872311, 0.793344, 1)
+light_energy = 0.838
+shadow_enabled = true
+
+[node name="SideScrollerCamera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.997564, 0.0697565, 0, -0.0697565, 0.997564, 0, 4, 16)
+fov = 28.0
+script = ExtResource("3_47mxx")
+
+[node name="Rooms" type="Node3D" parent="."]
+
+[node name="Player" parent="." instance=ExtResource("5_qpi6k")]

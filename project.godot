@@ -11,9 +11,14 @@ config_version=5
 [application]
 
 config/name="SideScrawler"
-run/main_scene="uid://bncqd0f0jdeo0"
+run/main_scene="uid://em1hfrnjxsoi"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[global_group]
+
+Room=""
+Room_Connectors=""
 
 [input]
 
