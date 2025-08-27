@@ -26,11 +26,13 @@ func _ready():
 	print("Loaded ", room_catalog.size(), " rooms! Here's the deets:")
 	for i in range(room_catalog.size()):
 		var temp_room = room_catalog[i].instantiate()
+		add_child(temp_room)  # Jam it in the tree temporarily!
 		var conns = _collect_connectors(temp_room)
 		var conn_info = []
 		for c in conns:
 			conn_info.append({ "name": c.slot_name, "facing": c.facing, "size": c.size_cells })
 		print("Room ", i, " (", temp_room.name, "): Connectors = ", conn_info)
+		remove_child(temp_room)  # Pop it out
 		temp_room.queue_free()
 	for i in range(room_catalog.size()):
 		room_attempts[i] = { "tries": 0, "places": 0, "rejects": 0 }
@@ -69,7 +71,7 @@ func generate() -> void:
 		_frontier.append(c)
 
 	# 3) Simple frontier growth: attach rooms until count reached or no openings
-	var placed := [root_room]
+	var placed: Array[Node3D] = [root_room]
 	var fails := 0
 
 	while placed.size() - 1 < target_room_count and _frontier.size() > 0 and fails < 100:  # Bump fails limit for now
@@ -91,8 +93,17 @@ func generate() -> void:
 			
 			var b_conn := _find_compatible_connector(b_room, a_conn)
 			if b_conn != null:
-				# Snap and finalize
-				room_attempts[room_idx].places += 1
+				# Snap first to get position
+				_snap_room_b_to_a(b_room, b_conn, a_conn)
+				
+				# Now check for overlap
+				if _would_overlap(b_room, placed):
+					b_room.queue_free()
+					room_attempts[room_idx].rejects += 1  # Count as reject
+					fails += 1
+					continue  # Try next candidate
+				
+				# No overlap? Proceed with Snap and finalize
 				_snap_room_b_to_a(b_room, b_conn, a_conn)
 				placed.append(b_room)
 				_placed_rooms.append(b_room)  # Fix: Add here if you want _placed_rooms updated
@@ -187,3 +198,19 @@ func _snap_room_b_to_a(b_room: Node3D, b_conn: Node3D, a_conn: Node3D) -> void:
 
 	var b_conn_to_room := b_room.global_transform.affine_inverse() * b
 	b_room.global_transform = target * b_conn_to_room.affine_inverse()
+
+func _would_overlap(b_room: Node3D, placed_rooms: Array[Node3D]) -> bool:
+	var b_pos = b_room.global_position
+	var b_half = b_room.size_cells / 2  # Half-extents in world units (32 or 64 half-cells)
+	var b_aabb = AABB(Vector3(b_pos.x - b_half.x, b_pos.y - b_half.y, b_pos.z - 500), Vector3(b_half.x * 2, b_half.y * 2, 1000))
+	
+	for p_room in placed_rooms:
+		if p_room == b_room: continue  # Skip self-check
+		var p_pos = p_room.global_position
+		var p_half = p_room.size_cells / 2
+		var p_aabb = AABB(Vector3(p_pos.x - p_half.x, p_pos.y - p_half.y, p_pos.z - 500), Vector3(p_half.x * 2, p_half.y * 2, 1000))
+		
+		if b_aabb.intersects(p_aabb):
+			print("Overlap detected! Skipping ", b_room.name, " at ", b_pos, " clashing with ", p_room.name, " at ", p_pos)
+			return true
+	return false

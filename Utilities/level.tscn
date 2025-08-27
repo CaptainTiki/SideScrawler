@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://fmch7ius1bf5" path="res://Utilities/level.gd" id="1_2fbmk"]
 [ext_resource type="Script" uid="uid://dcrudq4q2uck" path="res://Utilities/level_generator.gd" id="1_usqhr"]
 [ext_resource type="Script" uid="uid://d1t2l04yfex8w" path="res://Utilities/sidescroller_camera.gd" id="3_47mxx"]
-[ext_resource type="PackedScene" uid="uid://bxwnwp26uib0c" path="res://Biomes/Brick/Rooms/room_bricks_000.tscn" id="3_il3n5"]
+[ext_resource type="PackedScene" uid="uid://bxwnwp26uib0c" path="res://Biomes/Brick/Rooms/room_bricks_64_000.tscn" id="3_il3n5"]
 [ext_resource type="PackedScene" uid="uid://btxud1srvgp6i" path="res://Character/Player/player.tscn" id="5_qpi6k"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_il3n5"]
@@ -24,7 +24,7 @@ camera = NodePath("SideScrollerCamera")
 script = ExtResource("1_usqhr")
 entrance_scene = ExtResource("3_il3n5")
 rooms_dir = "res://Biomes/Brick/Rooms/"
-target_room_count = 12
+target_room_count = 24
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_qpi6k")
